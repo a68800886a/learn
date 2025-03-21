@@ -1,0 +1,103 @@
+1.檢查版本號
+	git --version
+	git version
+2.建立使用者資訊
+	git config --global user.name danny
+	git config --global user.email a68800886a@gmail.com
+3.確認資訊
+	git config list
+4.初始化倉庫
+	git init
+5.檔案狀態
+	U->UnTrack(未追蹤)
+6.加入控管
+	U->A
+	git add 1.txt(U->A)(Add)
+	修改過的檔案(A->M)(Modify)
+	git add . (全部add)
+7.控管狀態
+	git status
+8.檢查物件對應的檔案狀態
+	git ls-files -s
+9.檢視物件內容、形式(格式)
+	git cat-file -p XXXXXX(資料夾2碼+檔案開頭4碼)
+	git cat-file -t XXXXXX(資料夾2碼+檔案開頭4碼)
+
+10.控管後的刪除
+	A->D(delete)
+	git add 3.txt
+	git restore 3.txt
+11.暫存區存入倉庫
+	git commit -m "儲存測試"
+
+12.檢視目前的commit
+	got log
+	git log --oneline
+13.檢視目前分支(預設master)
+	git branch
+14.切換commit
+	git checkout ea68746ad5785cb0c5c6663309a492ccb7fe7819(6碼即可)
+	git checkout master
+
+git checkout 0bff141
+
+git checkout 2e7b9b9
+
+15.恢復
+	git restore
+16.新增分支
+	git branch test(test可以自訂名稱)
+
+16.1
+	git checkout -b test
+
+17.合併分支(master 合併其他分支)
+	git checkout master
+	git merge test
+	git branch -D test(刪除)
+
+18.合併失敗
+	選擇主支/分支/都留
+	git add
+	git commit -m "合併修正完成"
+19.看所有commit紀錄
+	git reflog 
+20.重製指令
+	git reset 6碼
+	git reset --hard 6碼
+
+### 常用指令
+
+1. git init
+2. git add
+3. git status
+4. git commit
+5. git log
+6. git checkout branch/commit-object
+7. git checkout .
+8. git branch
+9. git checkout -b branch-name
+10.git merge branch-name
+11.git reflog
+12 git reset --hard commit-object
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
