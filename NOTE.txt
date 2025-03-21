@@ -80,8 +80,11 @@ git checkout 2e7b9b9
 
 24.下載
 	git clone https://github.com/a68800886a/learn.git
-	
-25.
+
+25.忽略檔案的資料夾
+	.gitignore
+
+26.	
 
 
 	
