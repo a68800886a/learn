@@ -60,12 +60,31 @@ git checkout 2e7b9b9
 	選擇主支/分支/都留
 	git add
 	git commit -m "合併修正完成"
+
 19.看所有commit紀錄
 	git reflog 
+
 20.重製指令
 	git reset 6碼
 	git reset --hard 6碼
 
+21.加上雲端倉庫
+	gid revome add origin https://github.com/a68800886a/learn.git
+
+22.查看雲端連結
+	git remote -v
+
+23.上傳
+	git push -u origin master
+	git push
+
+24.下載
+	git clone https://github.com/a68800886a/learn.git
+	
+25.
+
+
+	
 ### 常用指令
 
 1. git init
