@@ -79,6 +79,8 @@ git checkout 2e7b9b9
 23.上傳
 	git push -u origin master
 	git push
+	強制覆蓋雲端(衝突時可以考慮直接以本地端為主)
+	git push -f 
 
 24.全部下載
 	git clone https://github.com/a68800886a/learn.git
