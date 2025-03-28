@@ -14,14 +14,52 @@
             display: inline-block;
             width: 600px;
         }
+
         
         body{
             background-color: rgb(166, 175, 152);
             font-family: "標楷體", Helvetica, sans-serif;
         }
 
-    </style>
+        .title{
+            color: rgb(250, 171, 147);
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(235, 88, 69);
+            font-size: 2rem;
+            display: inline-block;
+            width: 600px;
+            margin: 10px 20px 30px 40px;
+            padding: 1%;
+            border: 1px solid black;
+            border-radius: 10px;
+     }  
+        .mail-title{
+            color: white;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 2rem;
+            display: inline-block;
+            width: 200px;
+            margin: 10;
+            padding: 1%;
+            border: 3px solid black;
+            border-radius: 10%;
+        }
+        #table-bmi{
+            background-color: antiquewhite;
+            width: 50%;
+            height: 300px;
+        }
+        thead{
+            color: blue;
+        }
+        tr{
+            color:red;
+        }
+        td{
+            color:rgb(103, 57, 141);
+        }
 
+    </style>
 
 </head>
 
@@ -30,7 +68,7 @@
         <img width=100% src="https://img.freepik.com/free-vector/fitness-gym-training-twitch-banner_23-2150681508.jpg?t=st=1742559566~exp=1742563166~hmac=9a8dfeef487474ff6b4939df0d78e3ada43d0812121fa8d78db6867dc2412b45&w=900" alt="廣告橫幅">
     </a>
 
-    <h1 style="color: rgb(202, 169, 99);background-color: rgb(143, 106, 52);">我愛健身網站</h1>
+    <div class="mail-title">我愛健身網站</div>
     <h2>何謂健身?</h2>
 
     <h3>
@@ -45,7 +83,7 @@
     </p>
     <hr size="1">
 
-    <h2 style="color: aqua;background-color: cornflowerblue;">健身的10個好處</h2>
+    <div class="title">健身的10個好處</div>
     <!--
     <ul>、<ol>、<ol type:"A">、<ol type:"I">
         -->
@@ -85,9 +123,9 @@
         </a>
     <br>
 
-    <h2>一天所需卡路里</h2>
+    <div class="title">一天所需卡路里</div>
     
-    <table border="1">
+    <table id="table-bmi" border="5">
         <thead>
             <tr>
                 <th>每天活動量</th>
@@ -96,6 +134,7 @@
                 <th>體重過重、肥胖者所需熱量</th>
             </tr>
         </thead>
+
         <tbody >
             <tr>
                 <td>輕度工作</td>
@@ -131,11 +170,11 @@
 
     <h2>健身圖片</h2>
     
-    <br>
+    <div>
         <img width=33% src="images\pic-1.jpg" alt="pic-1.jpg">
         <img width=33% src="images\pic-2.jpg" alt="pic-2.jpg">
         <img width=33% src="images\pic-3.jpg" alt="pic-3.jpg">
-    <br>
+    </div>
     
     <h2>健身影片</h2>
 
