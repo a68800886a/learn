@@ -50,14 +50,14 @@ git checkout 2e7b9b9
 16.新增分支
 	git branch test(test可以自訂名稱)
 
-16.1
+16.新增分支
 	git checkout -b test
 
 17.合併分支(master 合併其他分支)
 	git checkout master
 	git merge test
 	git branch -D test(刪除)
-
+	git branch -D dev
 18.合併失敗
 	選擇主支/分支/都留
 	git add
