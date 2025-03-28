@@ -80,14 +80,18 @@ git checkout 2e7b9b9
 	git push -u origin master
 	git push
 
-24.下載
+24.全部下載
 	git clone https://github.com/a68800886a/learn.git
 
 25.忽略檔案的"檔案"
 	.gitignore
 
-26.	
+26.	將雲端版本同步本地端
+	git pull
 
+27.和上一次commit合併
+	git add.
+	git commit --amend
 
 	
 ### 常用指令
