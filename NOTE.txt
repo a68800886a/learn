@@ -33,7 +33,7 @@
 	git commit -m "儲存測試"
 
 12.檢視目前的commit
-	got log
+	git log
 	git log --oneline
 13.檢視目前分支(預設master)
 	git branch
@@ -71,7 +71,7 @@ git checkout 2e7b9b9
 	git reset --hard 6碼
 
 21.加上雲端倉庫
-	gid revome add origin https://github.com/a68800886a/learn.git
+	git remote add origin https://github.com/a68800886a/learn.git
 
 22.查看雲端連結
 	git remote -v
@@ -104,8 +104,6 @@ git checkout 2e7b9b9
 10.git merge branch-name
 11.git reflog
 12 git reset --hard commit-object
-
-
 
 
 
