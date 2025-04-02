@@ -92,11 +92,77 @@
         <br>
     </form>
     <a href="index.html">首頁</a>
+ 
+    <script>
+
+        let height = prompt("請輸入高:");
+        let weight = prompt("請輸入體重:");
+
+        let bmi=getBmi(height,weight)
+
+        alert("BMI:"+bmi)
+        
+        function getBmi(height,weight){
+            const bmi=weight/(height/100)**2;
+            console.log(bmi.toFixed(2));
+            return;
+        }
+
+/*
+        let x = 10;
+        let y = 20;
+        let z = 30
+        
+        //判斷式
+        if(x>10){
+            
+        }else if(y>20){
+
+        }else{
+            console.log(x,y)
+        }
+
+        x="10";
+        y=10;
+        //型態、值都相同
+        console.log(x===y);
+        //and &&
+        if(x>=10 && y>=30){
+            console.log("1");
+        }
+        //not !
+        let a = true
+        if(!a){
+            console.log("a")
+        }
+        //or||
+*/
+
+/*
+        console.log(x,y,z);
+        //宣告常數
+        const pi = 3.14
+        //prompt輸入
+        let radius=prompt("請輸入半徑:");
+        //畔數是否是數值
+        if (isNaN(radius)){
+
+            alert("請輸入正確數值!");
+        }else{
+            let area=radius*radius*pi;
+            const result="半徑為"+radius+"面積為"+area
+            console.log(result);
+            document.write("<h2>"+result+"<h2>");
+            alert(result);
+        }
+*/
 
 
+    </script>
 
 </body>
 
+</html>
 
 
 
