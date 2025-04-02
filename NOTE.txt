@@ -95,7 +95,9 @@ git checkout 2e7b9b9
 	git add.
 	git commit --amend
 
-	
+
+
+git pull origin css
 ### 常用指令
 
 1. git init
