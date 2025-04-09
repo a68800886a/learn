@@ -35,8 +35,12 @@
 12.檢視目前的commit
 	git log
 	git log --oneline
+
 13.檢視目前分支(預設master)
 	git branch
+	雲端
+	git branch -r
+
 14.切換commit
 	git checkout ea68746ad5785cb0c5c6663309a492ccb7fe7819(6碼即可)
 	git checkout master
@@ -47,6 +51,7 @@ git checkout 2e7b9b9
 
 15.恢復
 	git restore
+
 16.新增分支
 	git branch test(test可以自訂名稱)
 
@@ -58,6 +63,7 @@ git checkout 2e7b9b9
 	git merge test
 	git branch -D test(刪除)
 	git branch -D dev
+
 18.合併失敗
 	選擇主支/分支/都留
 	git add
@@ -95,9 +101,22 @@ git checkout 2e7b9b9
 	git add.
 	git commit --amend
 
+28.拉雲端分支
+	1.
+	創分支在
+	git checkout css
+	拉取指定分支
+	git pull origin css
+	
+	2.
+	拉取缺少的分支
+	git fetch
+	同步缺少分支
+	git checkout -b JavaScript origin/JavaScript
 
 
-git pull origin css
+
+
 ### 常用指令
 
 1. git init
