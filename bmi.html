@@ -151,9 +151,7 @@
 
         deleteRecordBtnEl.addEventListener("click",function(){
             localStorage.removeItem("record");
-
-            /*let recordEl=document.querySelector("#record");
-            console.log(recordEl);*/
+            localStorage.removeItem("datas");
 
             //刷新頁面
             //window.location.href="";
@@ -168,6 +166,10 @@
             total:0,
             count:0
         }
+        let datas=[]
+
+
+
         //將字串轉成物件
         record=JSON.parse(localStorage.getItem("record"));
         if(record){
@@ -181,6 +183,9 @@
         function calc(){
             let height=heightEl.value;
             let weight=weightEl.value;
+            let username=usernameEl.value
+            let age=ageEl.value
+            let sexEl=document.querySelector("input[name='sex']:checked");
 
             if (height<=0 || weight<=0){
                 alert("請輸入正確數值");
@@ -189,7 +194,7 @@
 
             document.querySelector("#result").hidden=false;
 
-            let sexEl=document.querySelector("input[name='sex']:checked");
+            
             let userInfo=`姓名:${usernameEl.value} 年齡:${ageEl.value} 性別:${sexEl.value} 縣市:${countyEl.value}`;
             console.log(userInfo)
             document.querySelector("#info").innerHTML=`<h2>${userInfo}</h2>`
@@ -211,7 +216,6 @@
             data.count+=1;
 
             console.log(data);
-            
             let avg=(data.total/data.count).toFixed(1);
 /*
             let recordEl=document.querySelector("#record");
@@ -220,10 +224,24 @@
             document.querySelector("#record").innerHTML=`計入人數${data.count} 平均BMI${avg}`;
 
             localStorage.setItem("record",JSON.stringify(data));
-            localStorage.setItem("bmi",bmi);
-
+  
             /*document.querySelector("#result").innerHTML="<h1>"+bmi+"</h1>";*/
             /*document.querySelector("#result").innerHTML=`<h1>BMI:${bmi}</h1><br><h1>${comment[0]}</h1>`;*/
+
+            let person={
+                name:username,
+                age:age,
+                height:height,
+                weight:weight,
+                bmi:bmi,
+                sex:sexEl
+            }
+
+            //console.log(person)
+            datas.push(person)
+            //console.log(datas)
+            //儲存
+            localStorage.setItem("datas",JSON.stringify(datas))
         }
 
         function getBmi(height,weight){
