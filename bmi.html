@@ -5,82 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BMI計算器</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bmi.css">
 
-    <style>
-        form{
-            position: relative;
-            width: 40%;
-            background-color: rgb(94, 197, 197);
-            margin: 24px auto;
-            padding: 24px;
-            border-radius: 12px;
-            box-shadow: 10px 10px 5px rgb(75,83,85);
-        }
+    <style></style>
 
-        input{
-            margin: 6px 0px;
-            font-size: 20px;
-            text-align: center;
-        }
-        label{
-            font-size: 20px;
-        }
-        .panell1{
-            background-color: rgb(195,227,255);
-            padding: 6px;
-            border: 2px dotted pink;
-            margin: 6px;
-        }
-        button{
-            width: 80px;
-            height: 30px;
-            margin-top: 1rem;
-            background-color: aqua;
-            border: none;
-            font-size: 16px;
-            border-radius: 6px;
-            color: blue;
-        }
-        button:hover{
-            background-color: cadetblue;
-            cursor: pointer;
-        }
-        a{
-            position: absolute;
-            background-color: brown;
-            color: white;
-            padding: 12px;
-            border-radius: 6px;
-            text-decoration: none;
-            top: 12px;
-            right: 12px;
-        }
-        a:hover{
-            color: red;
-        }
-
-        #result{
-            font-size: 2rem;
-            font-weight:100;
-            background-color: aquamarine;
-            border-radius: 15%;
-        }
-        .comment{
-            font-size: 1rem;
-        }
-
-        #info{
-            background-color: gray;
-        }
-
-        #record{
-            font-size: 32px;
-            margin-top: 24px;
-        }
-
-
-
-    </style>
+<script src="js/bmi.js"></script>
 
 </head>
 
@@ -90,7 +19,6 @@
     <button type="button" id="deleteRecordBtn">刪除</button>
 
     <div id="record"></div>
-
 
     <form action="">
         <br>
@@ -135,8 +63,13 @@
 
         <p class="comment">
         </p>
+        
     </div>
 
+    <div hidden="true" id="tableRecord">
+
+        
+    </div>
 
  
     <script>
@@ -147,29 +80,31 @@
         const countyEl=document.querySelector("#county");
         const deleteRecordBtnEl= document.querySelector("#deleteRecordBtn");
         
-        console.log(deleteRecordBtnEl);
+        /*console.log(deleteRecordBtnEl)*/;
 
         deleteRecordBtnEl.addEventListener("click",function(){
+            if (!confirm("是否確定刪除!?")){
+                return;
+            }
             localStorage.removeItem("record");
-            localStorage.removeItem("datas");
-
-            //刷新頁面
+             //刷新頁面
             //window.location.href="";
             document.querySelector("#record").innerHTML="";
             data.total=0;
             data.count=0;
+            localStorage.removeItem("datas");
+            datas=[]
 
         });
         //console.log(heightEl,weightEl,usernameEl,ageEl,countyEl,heightEl.value,weightEl.value,usernameEl.value,ageEl.value,countyEl.value,);
-
+        //物件
         let data={
             total:0,
             count:0
         }
-        let datas=[]
-
-
-
+        //陣列，沒東西就[]有東西就JSON.parse(localStorage.getItem("datas"))
+        let datas=JSON.parse(localStorage.getItem("datas")) || []
+        
         //將字串轉成物件
         record=JSON.parse(localStorage.getItem("record"));
         if(record){
@@ -178,7 +113,63 @@
             let avg=(data.total/data.count).toFixed(1);
             document.querySelector("#record").innerHTML=`計入人數${data.count} 平均BMI${avg}`;
         }   
-        console.log(data);
+        //console.log(data);
+
+        if (datas.length>0){
+            renderTable(datas);
+        }
+
+        function addRow(data){
+            return`
+            <tr>
+                <td>${data.name}</td>
+                <td>${data.county}</td>
+                <td>${data.age}</td>
+                <td>${data.sex}</td>
+                <td>${data.height}</td>
+                <td>${data.weight}</td>
+                <td>${data.bmi}</td>
+            </tr>
+            `;
+        }
+
+        function renderTable(datas){
+
+            for(let i=0;i<datas.length;i++){
+                tableData=""
+                console.log(i+1,datas[i])
+                tableData+=addRow(datas[i])
+            }
+
+
+            let tableHtml=`
+            <table border="1px">
+                <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>縣市</th>
+                        <th>年齡</th>
+                        <th>性別</th>
+                        <th>身高</th>
+                        <th>體重</th>
+                        <th>BMI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tableData}
+                </tbody>
+
+            </table>
+            `
+            //console.log(tableData);
+            document.querySelector("#tableRecord").innerHTML=tableHtml;
+        }
+            
+
+
+
+
+
 
         function calc(){
             let height=heightEl.value;
@@ -186,6 +177,7 @@
             let username=usernameEl.value
             let age=ageEl.value
             let sexEl=document.querySelector("input[name='sex']:checked");
+            let county=countyEl.value
 
             if (height<=0 || weight<=0){
                 alert("請輸入正確數值");
@@ -196,13 +188,13 @@
 
             
             let userInfo=`姓名:${usernameEl.value} 年齡:${ageEl.value} 性別:${sexEl.value} 縣市:${countyEl.value}`;
-            console.log(userInfo)
+            //console.log(userInfo)
             document.querySelector("#info").innerHTML=`<h2>${userInfo}</h2>`
 
             let bmi=getBmi(height,weight);
             let comment=getComment(bmi)
-            console.log(bmi);
-            console.log(comment)
+            /*console.log(bmi);
+            console.log(comment)*/
 
             const bmiEl=document.querySelector(".bmi");
             bmiEl.innerText=bmi;
@@ -234,7 +226,8 @@
                 height:height,
                 weight:weight,
                 bmi:bmi,
-                sex:sexEl
+                sex:sexEl.value,
+                county:county
             }
 
             //console.log(person)
@@ -242,43 +235,24 @@
             //console.log(datas)
             //儲存
             localStorage.setItem("datas",JSON.stringify(datas))
-        }
-
-        function getBmi(height,weight){
-            const bmi=weight/(height/100)**2;
-               return bmi.toFixed(2);
-        }
-
-        function getComment(bmi){
-            let comment,color
-            if (bmi< 18.5){
-                comment="「體重過輕」，需要多運動，均衡飲食，以增加體能，維持健康！";
-                color="red"
-            }
-            else if (bmi< 24){
-                comment="恭喜！「健康體重」，要繼續保持！";
-                color="green"
-            }
-            else if (bmi< 27){
-                comment="「體重過重」了，要小心囉，趕快力行「健康體重管理」！";
-                color="orange"
-            }
-            else {
-                comment="啊～「肥胖」，需要立刻力行「健康體重管理」囉！";
-                color="red"
-            }
-            return [comment,color];
+            renderTable(datas)
 
         }
+
+
+
+
     </script>
 
 </body>
 
 </html>
 
-
-
-
-
-
-
+<!-- 这是一个单行注释 
+table {
+    background-color: rgb(220, 255, 243);
+    margin: 0 auto;
+    width: 600px;
+    font-family: 'Courier New', Courier, monospace;
+    border-collapse: collapse;
+}-->
