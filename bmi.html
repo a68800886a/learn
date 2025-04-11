@@ -87,8 +87,10 @@
 <body>
     <div class="main-title">BMI計算器</div>
 
-    <div class="record">
-    </div>
+    <button type="button" id="deleteRecordBtn">刪除</button>
+
+    <div id="record"></div>
+
 
     <form action="">
         <br>
@@ -143,20 +145,37 @@
         const usernameEl=document.querySelector("#username");
         const ageEl=document.querySelector("#age");
         const countyEl=document.querySelector("#county");
-        console.log(heightEl,weightEl,usernameEl,ageEl,countyEl,heightEl.value,weightEl.value,usernameEl.value,ageEl.value,countyEl.value,);
+        const deleteRecordBtnEl= document.querySelector("#deleteRecordBtn");
+        
+        console.log(deleteRecordBtnEl);
+
+        deleteRecordBtnEl.addEventListener("click",function(){
+            localStorage.removeItem("record");
+
+            /*let recordEl=document.querySelector("#record");
+            console.log(recordEl);*/
+
+            //刷新頁面
+            //window.location.href="";
+            document.querySelector("#record").innerHTML="";
+            data.total=0;
+            data.count=0;
+
+        });
+        //console.log(heightEl,weightEl,usernameEl,ageEl,countyEl,heightEl.value,weightEl.value,usernameEl.value,ageEl.value,countyEl.value,);
 
         let data={
             total:0,
             count:0
         }
-
+        //將字串轉成物件
         record=JSON.parse(localStorage.getItem("record"));
         if(record){
             data=record
             //加入顯示紀錄動作
             let avg=(data.total/data.count).toFixed(1);
             document.querySelector("#record").innerHTML=`計入人數${data.count} 平均BMI${avg}`;
-        }
+        }   
         console.log(data);
 
         function calc(){
@@ -194,7 +213,10 @@
             console.log(data);
             
             let avg=(data.total/data.count).toFixed(1);
-            //有錯
+/*
+            let recordEl=document.querySelector("#record");
+            console.log(recordEl)
+*/
             document.querySelector("#record").innerHTML=`計入人數${data.count} 平均BMI${avg}`;
 
             localStorage.setItem("record",JSON.stringify(data));
