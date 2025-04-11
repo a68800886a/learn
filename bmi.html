@@ -73,7 +73,10 @@
             background-color: gray;
         }
 
-
+        #record{
+            font-size: 32px;
+            margin-top: 24px;
+        }
 
 
 
@@ -85,8 +88,6 @@
     <div class="main-title">BMI計算器</div>
 
     <div class="record">
-        <p>total</p>
-        <p>count</p>
     </div>
 
     <form action="">
@@ -149,6 +150,15 @@
             count:0
         }
 
+        record=JSON.parse(localStorage.getItem("record"));
+        if(record){
+            data=record
+            //加入顯示紀錄動作
+            let avg=(data.total/data.count).toFixed(1);
+            document.querySelector("#record").innerHTML=`計入人數${data.count} 平均BMI${avg}`;
+        }
+        console.log(data);
+
         function calc(){
             let height=heightEl.value;
             let weight=weightEl.value;
@@ -180,9 +190,15 @@
             
             data["total"]+=Number(bmi);
             data.count+=1;
+
             console.log(data);
+            
             let avg=(data.total/data.count).toFixed(1);
+            //有錯
             document.querySelector("#record").innerHTML=`計入人數${data.count} 平均BMI${avg}`;
+
+            localStorage.setItem("record",JSON.stringify(data));
+            localStorage.setItem("bmi",bmi);
 
             /*document.querySelector("#result").innerHTML="<h1>"+bmi+"</h1>";*/
             /*document.querySelector("#result").innerHTML=`<h1>BMI:${bmi}</h1><br><h1>${comment[0]}</h1>`;*/
